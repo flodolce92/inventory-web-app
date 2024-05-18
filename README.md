@@ -11,6 +11,6 @@ This project is an Inventory Management Web Application developed using Angular 
 
 ### Languages & Tools
 
-* Angular 14
+* Angular 17
 * Angular Material
 * TypeScript
