@@ -1,0 +1,9 @@
+mat-icon {
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+mat-list-item a {
+	text-decoration: none;
+	color: inherit;
+}

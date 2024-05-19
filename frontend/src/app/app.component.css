@@ -1,0 +1,15 @@
+app-sidenav {
+	margin-right: 12px;
+}
+
+mat-sidenav-container {
+	height: 100%;
+}
+
+mat-sidenav {
+	height: 100%;
+}
+
+mat-sidenav-content {
+	height: 100%;
+}
