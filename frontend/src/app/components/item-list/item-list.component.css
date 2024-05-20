@@ -1,0 +1,14 @@
+table {
+	width: 100%;
+}
+
+mat-form-field {
+	font-size: 14px;
+	width: 100%;
+}
+
+.mat-mdc-no-data-row {
+	text-align: center;
+	font-size: 1.5rem;
+	line-height: 3rem;
+}
