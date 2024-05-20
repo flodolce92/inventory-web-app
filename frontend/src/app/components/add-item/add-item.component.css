@@ -1,0 +1,12 @@
+mat-divider {
+	margin-bottom: 1.5rem;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+button {
+	margin-right: 0.5rem;
+}

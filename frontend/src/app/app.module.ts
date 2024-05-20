@@ -7,19 +7,28 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
-	declarations: [AppComponent, SidenavComponent, ItemListComponent],
+	declarations: [
+		AppComponent,
+		SidenavComponent,
+		ItemListComponent,
+		AddItemComponent,
+	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
@@ -28,10 +37,13 @@ import { MatSortModule } from '@angular/material/sort';
 		MatIconModule,
 		MatListModule,
 		MatTableModule,
+		FormsModule,
+		ReactiveFormsModule,
 		MatFormFieldModule,
 		MatInputModule,
 		MatPaginatorModule,
 		MatSortModule,
+		MatExpansionModule,
 	],
 	providers: [provideAnimationsAsync()],
 	bootstrap: [AppComponent],

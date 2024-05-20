@@ -1,0 +1,72 @@
+<form [formGroup]="addItemForm" (ngSubmit)="onSubmit(formDirective)" #formDirective="ngForm">
+
+	<h1> Add Item </h1>
+
+	<mat-divider></mat-divider>
+
+	<mat-form-field appearance="outline">
+		<mat-label>Code</mat-label>
+		<input matInput placeholder="Code" formControlName="code" required>
+		<mat-error *ngIf="addItemForm.get('code')?.hasError('required')">
+			Code is required
+		</mat-error>
+		<mat-error *ngIf="addItemForm.get('code')?.hasError('pattern')">
+			Invalid code format
+		</mat-error>
+	</mat-form-field>
+
+	<mat-form-field appearance="outline">
+		<mat-label>Name</mat-label>
+		<input matInput placeholder="Name" formControlName="name" required>
+		<mat-error *ngIf="addItemForm.get('name')?.hasError('required')">
+			Name is required
+		</mat-error>
+	</mat-form-field>
+
+	<mat-form-field appearance="outline">
+		<mat-label>Cost</mat-label>
+		<input matInput placeholder="Cost" formControlName="cost" required>
+		<mat-error *ngIf="addItemForm.get('cost')?.hasError('required')">
+			Cost is required
+		</mat-error>
+		<mat-error *ngIf="addItemForm.get('cost')?.hasError('min')">
+			Cost must be a positive number
+		</mat-error>
+		<mat-error *ngIf="addItemForm.get('cost')?.hasError('pattern')">
+			Cost must be a number
+		</mat-error>
+	</mat-form-field>
+
+	<mat-form-field appearance="outline">
+		<mat-label>Price</mat-label>
+		<input matInput placeholder="Price" formControlName="price" required>
+		<mat-error *ngIf="addItemForm.get('price')?.hasError('required')">
+			Price is required
+		</mat-error>
+		<mat-error *ngIf="addItemForm.get('price')?.hasError('min')">
+			Price must be a positive number
+		</mat-error>
+		<mat-error *ngIf="addItemForm.get('price')?.hasError('pattern')">
+			Price must be an integer
+		</mat-error>
+	</mat-form-field>
+
+	<mat-form-field appearance="outline">
+		<mat-label>Quantity</mat-label>
+		<input matInput placeholder="Quantity" formControlName="quantity" required>
+		<mat-error *ngIf="addItemForm.get('quantity')?.hasError('required')">
+			Quantity is required
+		</mat-error>
+		<mat-error *ngIf="addItemForm.get('quantity')?.hasError('min')">
+			Quantity must be a non-negative number
+		</mat-error>
+		<mat-error *ngIf="addItemForm.get('quantity')?.hasError('pattern')">
+			Quantity must be an integer
+		</mat-error>
+	</mat-form-field>
+
+	<mat-action-row>
+		<button type="reset" mat-stroked-button>Cancel</button>
+		<button type="submit" mat-raised-button color="primary" [disabled]="!addItemForm.valid">Add</button>
+	</mat-action-row>
+</form>
