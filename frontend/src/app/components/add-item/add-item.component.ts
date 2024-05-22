@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormGroupDirective } from '@angular/forms';
 import { InMemoryDataService } from '../../services/in-memory-data.service';
+import { AttributeService } from '../../services/attribute.service';
+
 import { Item } from '../../interfaces/item';
+import { Category } from '../../interfaces/category';
+import { Size } from '../../interfaces/size';
+import { Color } from '../../interfaces/color';
 
 @Component({
 	selector: 'app-add-item',
@@ -11,27 +16,29 @@ import { Item } from '../../interfaces/item';
 })
 export class AddItemComponent implements OnInit {
 	addItemForm: FormGroup;
-	categories = [
-		{ id: 1, name: 'Category 1' },
-		{ id: 2, name: 'Category 2' },
-	];
-	sizes = [
-		{ id: 1, name: 'Small' },
-		{ id: 2, name: 'Medium' },
-		{ id: 3, name: 'Large' },
-	];
-	colors = [
-		{ id: 1, name: 'Red' },
-		{ id: 2, name: 'Blue' },
-		{ id: 3, name: 'Green' },
-	];
+	categories = <Category[]>[];
+	sizes = <Size[]>[];
+	colors = <Color[]>[];
 
 	constructor(
 		private formBuilder: FormBuilder,
-		private dataService: InMemoryDataService
+		private dataService: InMemoryDataService,
+		private attributeService: AttributeService
 	) {}
 
 	ngOnInit() {
+		this.attributeService.getCategories().subscribe((data) => {
+			this.categories = data;
+		});
+
+		this.attributeService.getSizes().subscribe((data) => {
+			this.sizes = data;
+		});
+
+		this.attributeService.getColors().subscribe((data) => {
+			this.colors = data;
+		});
+
 		this.addItemForm = this.formBuilder.group({
 			name: ['', Validators.required],
 			description: ['', Validators.required],
