@@ -1,8 +1,10 @@
 export interface Item {
-	id?: number;
-	code?: string;
-	name?: string;
-	cost?: number;
-	price?: number;
-	quantity?: number;
+	id: number;
+	name: string;
+	description: string;
+	price: number;
+	quantity: number;
+	category: { id: number; name: string };
+	size: { id: number; name: string };
+	color: { id: number; name: string };
 }

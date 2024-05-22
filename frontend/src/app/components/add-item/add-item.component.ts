@@ -1,43 +1,60 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormGroupDirective } from '@angular/forms';
+import { Item } from '../../interfaces/item';
 
 @Component({
 	selector: 'app-add-item',
 	templateUrl: './add-item.component.html',
 	styleUrl: './add-item.component.css',
 })
-export class AddItemComponent {
+export class AddItemComponent implements OnInit {
+	addItemForm: FormGroup;
+	categories = [
+		{ id: 1, name: 'Category 1' },
+		{ id: 2, name: 'Category 2' },
+	];
+	sizes = [
+		{ id: 1, name: 'Small' },
+		{ id: 2, name: 'Medium' },
+		{ id: 3, name: 'Large' },
+	];
+	colors = [
+		{ id: 1, name: 'Red' },
+		{ id: 2, name: 'Blue' },
+		{ id: 3, name: 'Green' },
+	];
+
 	constructor(private formBuilder: FormBuilder) {}
 
-	addItemForm = this.formBuilder.group({
-		code: ['', [Validators.required, Validators.pattern(/^[A-Z0-9]+$/)]],
-		name: ['', Validators.required],
-		cost: [
-			'',
-			[
-				Validators.required,
-				Validators.min(0.01),
-				Validators.pattern(/^[0-9]+$/),
+	ngOnInit() {
+		this.addItemForm = this.formBuilder.group({
+			name: ['', Validators.required],
+			description: ['', Validators.required],
+			price: [
+				'',
+				[
+					Validators.required,
+					Validators.min(0),
+					Validators.pattern(/^\d+(\.\d{1,2})?$/),
+				],
 			],
-		],
-		price: [
-			'',
-			[
-				Validators.required,
-				Validators.min(0.01),
-				Validators.pattern(/^[0-9]+$/),
+			quantity: [
+				'',
+				[Validators.required, Validators.min(0), Validators.pattern(/^\d+$/)],
 			],
-		],
-		quantity: [
-			'',
-			[Validators.required, Validators.min(0), Validators.pattern(/^[0-9]+$/)],
-		],
-	});
+			category: ['', Validators.required],
+			size: ['', Validators.required],
+			color: ['', Validators.required],
+		});
+	}
 
 	onSubmit(formDirective: FormGroupDirective): void {
-		console.log(this.addItemForm.value);
-		this.addItemForm.reset();
-		formDirective.resetForm();
+		if (this.addItemForm.valid) {
+			const newItem: Item = this.addItemForm.value;
+			console.log(newItem);
+			formDirective.resetForm();
+			this.addItemForm.reset();
+		}
 	}
 }

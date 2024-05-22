@@ -5,17 +5,6 @@
 	<mat-divider></mat-divider>
 
 	<mat-form-field appearance="outline">
-		<mat-label>Code</mat-label>
-		<input matInput placeholder="Code" formControlName="code" required>
-		<mat-error *ngIf="addItemForm.get('code')?.hasError('required')">
-			Code is required
-		</mat-error>
-		<mat-error *ngIf="addItemForm.get('code')?.hasError('pattern')">
-			Invalid code format
-		</mat-error>
-	</mat-form-field>
-
-	<mat-form-field appearance="outline">
 		<mat-label>Name</mat-label>
 		<input matInput placeholder="Name" formControlName="name" required>
 		<mat-error *ngIf="addItemForm.get('name')?.hasError('required')">
@@ -24,16 +13,10 @@
 	</mat-form-field>
 
 	<mat-form-field appearance="outline">
-		<mat-label>Cost</mat-label>
-		<input matInput placeholder="Cost" formControlName="cost" required>
-		<mat-error *ngIf="addItemForm.get('cost')?.hasError('required')">
-			Cost is required
-		</mat-error>
-		<mat-error *ngIf="addItemForm.get('cost')?.hasError('min')">
-			Cost must be a positive number
-		</mat-error>
-		<mat-error *ngIf="addItemForm.get('cost')?.hasError('pattern')">
-			Cost must be a number
+		<mat-label>Description</mat-label>
+		<textarea matInput placeholder="Description" formControlName="description" required></textarea>
+		<mat-error *ngIf="addItemForm.get('description')?.hasError('required')">
+			Description is required
 		</mat-error>
 	</mat-form-field>
 
@@ -62,6 +45,36 @@
 		</mat-error>
 		<mat-error *ngIf="addItemForm.get('quantity')?.hasError('pattern')">
 			Quantity must be an integer
+		</mat-error>
+	</mat-form-field>
+
+	<mat-form-field appearance="outline">
+		<mat-label>Category</mat-label>
+		<mat-select formControlName="category" required>
+			<mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+		</mat-select>
+		<mat-error *ngIf="addItemForm.get('category')?.hasError('required')">
+			Category is required
+		</mat-error>
+	</mat-form-field>
+
+	<mat-form-field appearance="outline">
+		<mat-label>Size</mat-label>
+		<mat-select formControlName="size" required>
+			<mat-option *ngFor="let size of sizes" [value]="size.id">{{size.name}}</mat-option>
+		</mat-select>
+		<mat-error *ngIf="addItemForm.get('size')?.hasError('required')">
+			Size is required
+		</mat-error>
+	</mat-form-field>
+
+	<mat-form-field appearance="outline">
+		<mat-label>Color</mat-label>
+		<mat-select formControlName="color" required>
+			<mat-option *ngFor="let color of colors" [value]="color.id">{{color.name}}</mat-option>
+		</mat-select>
+		<mat-error *ngIf="addItemForm.get('color')?.hasError('required')">
+			Color is required
 		</mat-error>
 	</mat-form-field>
 
