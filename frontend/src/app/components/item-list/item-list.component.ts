@@ -11,38 +11,6 @@ import { MatTableDataSource } from '@angular/material/table';
 	styleUrl: './item-list.component.css',
 })
 export class ItemListComponent implements OnInit, AfterViewInit {
-	private items: Item[] = [
-		{
-			id: 1,
-			name: 'Item 1',
-			description: 'Description 1',
-			price: 100,
-			quantity: 10,
-			category: { id: 1, name: 'Category 1' },
-			size: { id: 1, name: 'Size 1' },
-			color: { id: 1, name: 'Color 1' },
-		},
-		{
-			id: 2,
-			name: 'Item 2',
-			description: 'Description 2',
-			price: 200,
-			quantity: 20,
-			category: { id: 2, name: 'Category 2' },
-			size: { id: 2, name: 'Size 2' },
-			color: { id: 2, name: 'Color 2' },
-		},
-		{
-			id: 3,
-			name: 'Item 3',
-			description: 'Description 3',
-			price: 300,
-			quantity: 30,
-			category: { id: 3, name: 'Category 3' },
-			size: { id: 3, name: 'Size 3' },
-			color: { id: 3, name: 'Color 3' },
-		},
-	];
 	displayedColumns: string[] = [
 		'name',
 		'category',
@@ -52,10 +20,7 @@ export class ItemListComponent implements OnInit, AfterViewInit {
 		'quantity',
 	];
 
-	// dataSource: MatTableDataSource<Item> = new MatTableDataSource<Item>();
-	dataSource: MatTableDataSource<Item> = new MatTableDataSource<Item>(
-		this.items
-	);
+	dataSource: MatTableDataSource<Item> = new MatTableDataSource<Item>();
 
 	@ViewChild(MatPaginator) paginator!: MatPaginator;
 	@ViewChild(MatSort) sort!: MatSort;
