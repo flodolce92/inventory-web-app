@@ -3,7 +3,7 @@ import { Color } from './color';
 import { Size } from './size';
 
 export interface Item {
-	id: number;
+	id?: number;
 	name: string;
 	description: string;
 	price: number;

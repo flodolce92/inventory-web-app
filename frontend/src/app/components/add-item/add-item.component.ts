@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormGroupDirective } from '@angular/forms';
-import { InMemoryDataService } from '../../services/in-memory-data.service';
-import { AttributeService } from '../../services/attribute.service';
 
+import { ItemService } from '../../services/item.service';
+import { AttributeService } from '../../services/attribute.service';
 import { Item } from '../../interfaces/item';
 import { Category } from '../../interfaces/category';
 import { Size } from '../../interfaces/size';
@@ -22,7 +22,7 @@ export class AddItemComponent implements OnInit {
 
 	constructor(
 		private formBuilder: FormBuilder,
-		private dataService: InMemoryDataService,
+		private itemService: ItemService,
 		private attributeService: AttributeService
 	) {}
 
@@ -60,14 +60,56 @@ export class AddItemComponent implements OnInit {
 		});
 	}
 
+	getCategoryObject(category: Category): Category {
+		return { id: category.id, name: category.name };
+	}
+
+	getSizeObject(size: Size): Size {
+		return { id: size.id, name: size.name };
+	}
+
+	getColorObject(color: Color): Color {
+		return { id: color.id, name: color.name };
+	}
+
 	onSubmit(formDirective: FormGroupDirective): void {
 		if (this.addItemForm.valid) {
-			const newItem: Item = this.addItemForm.value;
-			const addedItem = this.dataService.addNewItem(newItem);
-			console.log('Added item:', addedItem);
-			console.log('Items:', this.dataService.items);
-			formDirective.resetForm();
-			this.addItemForm.reset();
+			const newItem: Item = {
+				name: this.addItemForm.value.name,
+				description: this.addItemForm.value.description,
+				price: this.addItemForm.value.price,
+				quantity: this.addItemForm.value.quantity,
+				category: {
+					id: this.addItemForm.value.category.id,
+					name: this.addItemForm.value.category.name,
+				},
+				size: {
+					id: this.addItemForm.value.size.id,
+					name: this.addItemForm.value.size.name,
+				},
+				color: {
+					id: this.addItemForm.value.color.id,
+					name: this.addItemForm.value.color.name,
+				},
+			};
+			this.itemService.addItem(newItem).subscribe({
+				next: (response) => {
+					console.log('Item added successfully', response);
+					this.itemService.getItems().subscribe({
+						next: (items) => {
+							console.log('List of all items:', items);
+						},
+						error: (error) => {
+							console.error('Error fetching items', error);
+						},
+					});
+					formDirective.resetForm();
+					this.addItemForm.reset();
+				},
+				error: (error) => {
+					console.error('Error adding item', error);
+				},
+			});
 		}
 	}
 }

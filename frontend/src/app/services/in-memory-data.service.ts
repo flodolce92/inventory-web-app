@@ -39,15 +39,15 @@ export class InMemoryDataService implements InMemoryDbService {
 	];
 
 	categories = [
-		{ id: 1, name: 'Category 1' },
-		{ id: 2, name: 'Category 2' },
-		{ id: 3, name: 'Category 3' },
+		{ id: 101, name: 'Category 1' },
+		{ id: 102, name: 'Category 2' },
+		{ id: 103, name: 'Category 3' },
 	];
 
 	colors = [
-		{ id: 1, name: 'Amaranto' },
-		{ id: 2, name: 'Giallo' },
-		{ id: 3, name: 'Verde' },
+		{ id: 11, name: 'Amaranto' },
+		{ id: 12, name: 'Giallo' },
+		{ id: 13, name: 'Verde' },
 	];
 
 	sizes = [
@@ -55,12 +55,6 @@ export class InMemoryDataService implements InMemoryDbService {
 		{ id: 2, name: 'L' },
 		{ id: 3, name: 'S' },
 	];
-
-	addNewItem(newItem: any) {
-		newItem.id = Math.floor(Math.random() * 100000);
-		this.items.push(newItem);
-		return newItem;
-	}
 
 	createDb() {
 		return this;
