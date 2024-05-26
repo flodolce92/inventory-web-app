@@ -9,19 +9,19 @@ import { Color } from '../interfaces/color';
 	providedIn: 'root',
 })
 export class AttributeService {
-	private baseUrl = 'http://localhost:8080/api';
+	private apiUrl = 'http://localhost:8080/api';
 
 	constructor(private http: HttpClient) {}
 
 	getCategories(): Observable<Category[]> {
-		return this.http.get<Category[]>(`${this.baseUrl}/categories`);
+		return this.http.get<Category[]>(`${this.apiUrl}/categories`);
 	}
 
 	getSizes(): Observable<Size[]> {
-		return this.http.get<Size[]>(`${this.baseUrl}/sizes`);
+		return this.http.get<Size[]>(`${this.apiUrl}/sizes`);
 	}
 
 	getColors(): Observable<Color[]> {
-		return this.http.get<Color[]>(`${this.baseUrl}/colors`);
+		return this.http.get<Color[]>(`${this.apiUrl}/colors`);
 	}
 }

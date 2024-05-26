@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Sell Item</h1>
+<div mat-dialog-content>
+  <p>Are you sure you want to sell this item?</p>
+  <p>{{data.name}}</p>
+  <mat-form-field>
+    <mat-label>Quantity to sell</mat-label>
+    <input matInput [(ngModel)]="quantity" type="number" min="1" [max]="data.quantity">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No</button>
+  <button mat-button (click)="onConfirmClick()">Yes</button>
+</div>

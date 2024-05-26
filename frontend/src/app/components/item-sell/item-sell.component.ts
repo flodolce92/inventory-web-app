@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { Item } from '../../interfaces/item';
 import { ItemService } from '../../services/item.service';
+import { ItemSellModalComponent } from '../item-sell-modal/item-sell-modal.component';
 
 @Component({
 	selector: 'app-item-sell',
@@ -16,11 +17,11 @@ export class ItemSellComponent implements OnInit {
 
 	ngOnInit(): void {}
 
-	onSellItem(): void {
+	onSell(): void {
 		const modal = this.openModal();
-		modal.afterClosed().subscribe((result) => {
-			if (result) {
-				this.sellItem(result);
+		modal.afterClosed().subscribe((quantityToSell) => {
+			if (quantityToSell) {
+				this.sellItem(this.item, quantityToSell);
 			}
 		});
 	}
@@ -32,7 +33,22 @@ export class ItemSellComponent implements OnInit {
 		});
 	}
 
-	sellItem(item: Item): void {
-		this.itemService.sellItem(item);
+	sellItem(item: Item, quantityToSell: number): void {
+		if (quantityToSell > item.quantity) {
+			console.error('Quantity to sell exceeds available quantity');
+			return;
+		}
+
+		const updatedItem = { ...item, quantity: item.quantity - quantityToSell };
+		this.itemService.sellItem(updatedItem.id!, quantityToSell).subscribe({
+			next: (response) => {
+				console.log('Item sold successfully', response);
+				item.quantity = updatedItem.quantity;
+			},
+			error: (error) => {
+				console.error('Error selling item', error);
+				item.quantity = updatedItem.quantity; // checcazz
+			},
+		});
 	}
 }

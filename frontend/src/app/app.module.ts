@@ -11,6 +11,11 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
+import { ItemSellComponent } from './components/item-sell/item-sell.component';
+import { ItemInsertComponent } from './components/item-insert/item-insert.component';
+import { ItemUpdateComponent } from './components/item-update/item-update.component';
+import { ItemDeleteComponent } from './components/item-delete/item-delete.component';
+import { ItemSellModalComponent } from './components/item-sell-modal/item-sell-modal.component';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,6 +38,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
 		SidenavComponent,
 		ItemListComponent,
 		AddItemComponent,
+		ItemSellComponent,
+		ItemInsertComponent,
+		ItemUpdateComponent,
+		ItemDeleteComponent,
+		ItemSellModalComponent,
 	],
 	imports: [
 		BrowserModule,

@@ -18,6 +18,7 @@ export class ItemListComponent implements OnInit, AfterViewInit {
 		'color',
 		'price',
 		'quantity',
+		'actions',
 	];
 
 	dataSource: MatTableDataSource<Item> = new MatTableDataSource<Item>();
