@@ -1,10 +1,10 @@
-package com.inventory.leonardo.inventory;
+package com.inventory.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class InventoryApplicationTests {
+class BackendApplicationTests {
 
 	@Test
 	void contextLoads() {

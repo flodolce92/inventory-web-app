@@ -1,13 +1,13 @@
-package com.inventory.leonardo.inventory;
+package com.inventory.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class InventoryApplication {
+public class BackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(InventoryApplication.class, args);
+		SpringApplication.run(BackendApplication.class, args);
 	}
 
 }
