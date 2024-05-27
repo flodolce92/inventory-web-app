@@ -1,27 +1,27 @@
-package com._shop.backend.model;
+package com.inventory.leonardo.inventory.model;
 
 import jakarta.persistence.*;
 
-//@Table(name = "categories")
 @Entity
-public class Categories {
+//@Table(name = "sizes")
+public class Sizes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
-    private int idCategory;
+    private int idSize;
     private String name;
 
-    public Categories(int idCategory, String name) {
-        this.idCategory = idCategory;
+    public Sizes(int idSize, String name) {
+        this.idSize = idSize;
         this.name = name;
     }
 
-    public int getIdCategory() {
-        return idCategory;
+    public int getIdSize() {
+        return idSize;
     }
 
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
+    public void setIdSize(int idSize) {
+        this.idSize = idSize;
     }
 
     public String getName() {
@@ -34,8 +34,8 @@ public class Categories {
 
     @Override
     public String toString() {
-        return "Categories{" +
-                "idCategory=" + idCategory +
+        return "Sizes{" +
+                "idSize=" + idSize +
                 ", name='" + name + '\'' +
                 '}';
     }

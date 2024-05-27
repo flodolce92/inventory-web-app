@@ -62,7 +62,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 		MatPaginatorModule,
 		MatSortModule,
 		MatExpansionModule,
-		InMemoryWebApiModule.forRoot(InMemoryDataService),
+		// InMemoryWebApiModule.forRoot(InMemoryDataService),
 	],
 	providers: [provideAnimationsAsync()],
 	bootstrap: [AppComponent],
