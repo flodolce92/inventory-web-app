@@ -1,15 +1,12 @@
 package com.inventory.backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import static jakarta.persistence.GenerationType.AUTO;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Data
@@ -17,7 +14,7 @@ import static jakarta.persistence.GenerationType.AUTO;
 @AllArgsConstructor
 public class Item {
     @Id
-    @GeneratedValue(strategy = AUTO)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
     @Column(unique = true)
     @NotEmpty(message = "name cannot be empty")
@@ -28,5 +25,8 @@ public class Item {
     private int quantity;
     private int fkIdCategory;
     private int fkIdSize;
-    private int fkIdColor;
+
+    @ManyToOne
+    @JoinColumn(name = "fkIdColor")
+    private Color color;
 }
