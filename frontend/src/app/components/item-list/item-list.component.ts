@@ -38,18 +38,6 @@ export class ItemListComponent implements OnInit, AfterViewInit {
 	ngAfterViewInit(): void {
 		this.dataSource.paginator = this.paginator;
 		this.dataSource.sort = this.sort;
-		this.dataSource.sortingDataAccessor = (item, property) => {
-			switch (property) {
-				case 'category':
-					return item.category.name;
-				case 'size':
-					return item.size.name;
-				case 'color':
-					return item.color.name;
-				default:
-					return (item as any)[property];
-			}
-		};
 	}
 
 	applyFilter(event: Event): void {
