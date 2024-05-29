@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './services/in-memory-data.service';
+// import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService } from './services/in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,11 +11,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
-import { ItemSellComponent } from './components/item-sell/item-sell.component';
-import { ItemInsertComponent } from './components/item-insert/item-insert.component';
-import { ItemUpdateComponent } from './components/item-update/item-update.component';
-import { ItemDeleteComponent } from './components/item-delete/item-delete.component';
-import { ItemSellModalComponent } from './components/item-sell-modal/item-sell-modal.component';
+import { ItemDetailComponent } from './components/item-detail/item-detail.component';
+import { ItemDetailModalComponent } from './components/item-detail-modal/item-detail-modal.component';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -31,6 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
 	declarations: [
@@ -38,11 +36,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 		SidenavComponent,
 		ItemListComponent,
 		AddItemComponent,
-		ItemSellComponent,
-		ItemInsertComponent,
-		ItemUpdateComponent,
-		ItemDeleteComponent,
-		ItemSellModalComponent,
+		ItemDetailComponent,
+		ItemDetailModalComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -62,6 +57,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 		MatPaginatorModule,
 		MatSortModule,
 		MatExpansionModule,
+		MatDialogModule,
 		// InMemoryWebApiModule.forRoot(InMemoryDataService),
 	],
 	providers: [provideAnimationsAsync()],

@@ -1,0 +1,30 @@
+mat-dialog-content {
+	max-height: 400px;
+	overflow: auto;
+}
+
+mat-dialog-actions {
+	display: flex;
+	justify-content: flex-end;
+}
+
+table {
+	width: 100%;
+}
+
+th.mat-header-cell,
+td.mat-cell {
+	padding: 8px;
+}
+
+.centered-header {
+	text-align: center;
+}
+
+.centered-cell {
+	text-align: center;
+}
+
+button.mat-icon-button {
+	padding: 4px;
+}

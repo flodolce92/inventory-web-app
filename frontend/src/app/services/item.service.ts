@@ -16,26 +16,18 @@ export class ItemService {
 	}
 
 	getItem(id: number): Observable<Item> {
-		return this.http.get<Item>(`${this.apiUrl}/items/${id}`);
+		return this.http.get<Item>(`${this.apiUrl}/item/${id}`);
 	}
 
 	addItem(item: Item): Observable<Item> {
-		return this.http.post<Item>(`${this.apiUrl}/items`, item);
+		return this.http.post<Item>(`${this.apiUrl}/item/add`, item);
 	}
 
 	updateItem(item: Item): Observable<Item> {
-		return this.http.put<Item>(`${this.apiUrl}/items/${item.id}`, item);
+		return this.http.put<Item>(`${this.apiUrl}/item/${item.id}`, item);
 	}
 
 	deleteItem(id: number): Observable<Item> {
-		return this.http.delete<Item>(`${this.apiUrl}/items/${id}`);
-	}
-
-	sellItem(id: number, quantity: number): Observable<Item> {
-		return this.http.put<Item>(`${this.apiUrl}/items/${id}/sell`, { quantity });
-	}
-
-	insertItem(id: number, quantity: number): Observable<Item> {
-		return this.http.put<Item>(`${this.apiUrl}/items/${id}/insert`, { quantity });
+		return this.http.delete<Item>(`${this.apiUrl}/item/${id}`);
 	}
 }
