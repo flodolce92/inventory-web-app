@@ -26,6 +26,8 @@ public class Item {
 
     private String description;
 
+    private String category;
+
     @NotEmpty(message = "price cannot be empty")
     private double price;
 

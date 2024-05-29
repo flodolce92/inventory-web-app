@@ -14,10 +14,10 @@ export class ItemListComponent implements OnInit, AfterViewInit {
 	displayedColumns: string[] = [
 		'name',
 		'category',
-		'size',
-		'color',
+		// 'size',
+		// 'color',
 		'price',
-		'quantity',
+		// 'quantity',
 		'actions',
 	];
 
@@ -31,6 +31,7 @@ export class ItemListComponent implements OnInit, AfterViewInit {
 	ngOnInit(): void {
 		this.itemService.getItems().subscribe((data) => {
 			this.dataSource.data = data;
+			// console.log(this.dataSource.data);
 		});
 	}
 
@@ -49,7 +50,6 @@ export class ItemListComponent implements OnInit, AfterViewInit {
 					return (item as any)[property];
 			}
 		};
-		// console.log(this.dataSource);
 	}
 
 	applyFilter(event: Event): void {

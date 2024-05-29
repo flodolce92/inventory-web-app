@@ -7,12 +7,12 @@ import { Item } from '../interfaces/item';
 	providedIn: 'root',
 })
 export class ItemService {
-	private apiUrl = 'http://localhost:8080/api';
+	private apiUrl = 'http://localhost:8080';
 
 	constructor(private http: HttpClient) {}
 
 	getItems(): Observable<Item[]> {
-		return this.http.get<Item[]>(`${this.apiUrl}/items`);
+		return this.http.get<Item[]>(`${this.apiUrl}/item/list`);
 	}
 
 	getItem(id: number): Observable<Item> {
