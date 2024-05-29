@@ -10,4 +10,6 @@ public interface ItemOptionService {
     ItemOption get(Long id);
     ItemOption update(ItemOption itemOption);
     Boolean delete(Long id);
+    Collection<String> findDistinctColors();
+    Collection<String> findDistinctSizes();
 }

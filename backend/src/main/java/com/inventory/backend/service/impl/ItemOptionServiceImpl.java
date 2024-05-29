@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -48,5 +49,17 @@ public class ItemOptionServiceImpl implements ItemOptionService {
             itemOptionRepo.delete(itemOption);
             return true;
         }).orElse(false);
+    }
+
+    @Override
+    public Collection<String> findDistinctColors() {
+        log.info("Fetching distinct colors");
+        return itemOptionRepo.findDistinctColors();
+    }
+
+    @Override
+    public Collection<String> findDistinctSizes() {
+        log.info("Fetching distinct sizes");
+        return itemOptionRepo.findDistinctSizes();
     }
 }

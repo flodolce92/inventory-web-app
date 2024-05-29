@@ -19,4 +19,14 @@ public class ItemOptionController {
     public ResponseEntity<?> getItemOptions() {
         return ResponseEntity.ok(itemOptionService.list());
     }
+
+    @GetMapping("/colors")
+    public ResponseEntity<?> getDistinctColors() {
+        return ResponseEntity.ok(itemOptionService.findDistinctColors());
+    }
+
+    @GetMapping("/sizes")
+    public ResponseEntity<?> getDistinctSizes() {
+        return ResponseEntity.ok(itemOptionService.findDistinctSizes());
+    }
 }
