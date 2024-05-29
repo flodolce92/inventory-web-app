@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Item } from '../interfaces/item';
-import { Category } from '../interfaces/category';
 
 @Injectable({
 	providedIn: 'root',
@@ -33,7 +32,7 @@ export class ItemService {
 		return this.http.delete<Item>(`${this.apiUrl}/item/${id}`);
 	}
 
-	getCategories(): Observable<Category[]> {
-		return this.http.get<Category[]>(`${this.apiUrl}/item/categories`);
+	getCategories(): Observable<string[]> {
+		return this.http.get<string[]>(`${this.apiUrl}/item/categories`);
 	}
 }

@@ -5,9 +5,6 @@ import { FormGroupDirective } from '@angular/forms';
 import { ItemService } from '../../services/item.service';
 import { AttributeService } from '../../services/attribute.service';
 import { Item } from '../../interfaces/item';
-import { Category } from '../../interfaces/category';
-import { Size } from '../../interfaces/size';
-import { Color } from '../../interfaces/color';
 
 @Component({
 	selector: 'app-add-item',
@@ -16,9 +13,9 @@ import { Color } from '../../interfaces/color';
 })
 export class AddItemComponent implements OnInit {
 	addItemForm: FormGroup;
-	categories = <Category[]>[];
-	sizes = <Size[]>[];
-	colors = <Color[]>[];
+	categories = <string[]>[];
+	sizes = <string[]>[];
+	colors = <string[]>[];
 
 	constructor(
 		private formBuilder: FormBuilder,
@@ -41,7 +38,7 @@ export class AddItemComponent implements OnInit {
 
 		this.addItemForm = this.formBuilder.group({
 			name: ['', Validators.required],
-			description: ['', Validators.required],
+			description: [''],
 			price: [
 				'',
 				[
@@ -60,57 +57,40 @@ export class AddItemComponent implements OnInit {
 		});
 	}
 
-	getCategoryObject(category: Category): Category {
-		return { id: category.id, name: category.name };
-	}
-
-	getSizeObject(size: Size): Size {
-		return { id: size.id, name: size.name };
-	}
-
-	getColorObject(color: Color): Color {
-		return { id: color.id, name: color.name };
-	}
-
 	onSubmit(formDirective: FormGroupDirective): void {
 		if (this.addItemForm.valid) {
 			const newItem: Item = {
 				name: this.addItemForm.value.name,
 				description: this.addItemForm.value.description,
 				price: this.addItemForm.value.price,
-				quantity: this.addItemForm.value.quantity,
-				category: {
-					id: this.addItemForm.value.category.id,
-					name: this.addItemForm.value.category.name,
-				},
-				size: {
-					id: this.addItemForm.value.size.id,
-					name: this.addItemForm.value.size.name,
-				},
-				color: {
-					id: this.addItemForm.value.color.id,
-					name: this.addItemForm.value.color.name,
-				},
+				category: this.addItemForm.value.category,
+				options: [
+					{
+						size: this.addItemForm.value.size,
+						color: this.addItemForm.value.color,
+						quantity: this.addItemForm.value.quantity,
+					},
+				],
 			};
 			console.log('New item:', newItem);
-			// this.itemService.addItem(newItem).subscribe({
-			// 	next: (response) => {
-			// 		console.log('Item added successfully', response);
-			// 		this.itemService.getItems().subscribe({
-			// 			next: (items) => {
-			// 				console.log('List of all items:', items);
-			// 			},
-			// 			error: (error) => {
-			// 				console.error('Error fetching items', error);
-			// 			},
-			// 		});
-			// 		formDirective.resetForm();
-			// 		this.addItemForm.reset();
-			// 	},
-			// 	error: (error) => {
-			// 		console.error('Error adding item', error);
-			// 	},
-			// });
+			this.itemService.addItem(newItem).subscribe({
+				next: (response) => {
+					console.log('Item added successfully', response);
+					this.itemService.getItems().subscribe({
+						next: (items) => {
+							console.log('List of all items:', items);
+						},
+						error: (error) => {
+							console.error('Error fetching items', error);
+						},
+					});
+					formDirective.resetForm();
+					this.addItemForm.reset();
+				},
+				error: (error) => {
+					console.error('Error adding item', error);
+				},
+			});
 		}
 	}
 }

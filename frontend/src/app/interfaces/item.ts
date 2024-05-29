@@ -1,14 +1,16 @@
-import { Category } from './category';
-import { Color } from './color';
-import { Size } from './size';
+export interface ItemOption {
+	id?: number;
+	size: string;
+	color: string;
+	quantity: number;
+	id_item?: number;
+}
 
 export interface Item {
 	id?: number;
 	name: string;
-	description: string;
+	description?: string;
+	category: string;
 	price: number;
-	quantity: number;
-	category: Category;
-	size: Size;
-	color: Color;
+	options: ItemOption[];
 }
