@@ -10,4 +10,5 @@ public interface ItemService {
     Item get(Long id);
     Item update(Item item);
     Boolean delete(Long id);
+    Collection<String> findDistinctCategories();
 }

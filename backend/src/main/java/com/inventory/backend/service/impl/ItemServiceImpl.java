@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -48,5 +49,11 @@ public class ItemServiceImpl implements ItemService {
             itemRepo.delete(item);
             return true;
         }).orElse(false);
+    }
+
+    @Override
+    public Collection<String> findDistinctCategories() {
+        log.info("Fetching distinct categories");
+        return itemRepo.findDistinctCategories();
     }
 }

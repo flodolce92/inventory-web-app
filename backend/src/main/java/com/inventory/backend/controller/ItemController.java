@@ -39,4 +39,9 @@ public class ItemController {
         itemService.delete(id);
         return ResponseEntity.ok("Item deleted successfully");
     }
+
+    @GetMapping("/categories")
+    public ResponseEntity<?> getCategories() {
+        return ResponseEntity.ok(itemService.findDistinctCategories());
+    }
 }
