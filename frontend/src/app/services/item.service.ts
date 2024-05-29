@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { Item } from '../interfaces/item';
+import { Category } from '../interfaces/category';
 
 @Injectable({
 	providedIn: 'root',
@@ -24,10 +26,14 @@ export class ItemService {
 	}
 
 	updateItem(item: Item): Observable<Item> {
-		return this.http.put<Item>(`${this.apiUrl}/item/update/${item.id}`, item);
+		return this.http.put<Item>(`${this.apiUrl}/item/update`, item);
 	}
 
 	deleteItem(id: number): Observable<Item> {
 		return this.http.delete<Item>(`${this.apiUrl}/item/${id}`);
+	}
+
+	getCategories(): Observable<Category[]> {
+		return this.http.get<Category[]>(`${this.apiUrl}/item/categories`);
 	}
 }

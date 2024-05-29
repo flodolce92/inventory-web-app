@@ -13,15 +13,11 @@ export class AttributeService {
 
 	constructor(private http: HttpClient) {}
 
-	getCategories(): Observable<Category[]> {
-		return this.http.get<Category[]>(`${this.apiUrl}/category/all`);
-	}
-
 	getSizes(): Observable<Size[]> {
-		return this.http.get<Size[]>(`${this.apiUrl}/size/all`);
+		return this.http.get<Size[]>(`${this.apiUrl}/item-option/sizes`);
 	}
 
 	getColors(): Observable<Color[]> {
-		return this.http.get<Color[]>(`${this.apiUrl}/color/all`);
+		return this.http.get<Color[]>(`${this.apiUrl}/item-option/colors`);
 	}
 }

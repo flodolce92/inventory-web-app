@@ -27,7 +27,7 @@ export class AddItemComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this.attributeService.getCategories().subscribe((data) => {
+		this.itemService.getCategories().subscribe((data) => {
 			this.categories = data;
 		});
 
@@ -92,24 +92,25 @@ export class AddItemComponent implements OnInit {
 					name: this.addItemForm.value.color.name,
 				},
 			};
-			this.itemService.addItem(newItem).subscribe({
-				next: (response) => {
-					console.log('Item added successfully', response);
-					this.itemService.getItems().subscribe({
-						next: (items) => {
-							console.log('List of all items:', items);
-						},
-						error: (error) => {
-							console.error('Error fetching items', error);
-						},
-					});
-					formDirective.resetForm();
-					this.addItemForm.reset();
-				},
-				error: (error) => {
-					console.error('Error adding item', error);
-				},
-			});
+			console.log('New item:', newItem);
+			// this.itemService.addItem(newItem).subscribe({
+			// 	next: (response) => {
+			// 		console.log('Item added successfully', response);
+			// 		this.itemService.getItems().subscribe({
+			// 			next: (items) => {
+			// 				console.log('List of all items:', items);
+			// 			},
+			// 			error: (error) => {
+			// 				console.error('Error fetching items', error);
+			// 			},
+			// 		});
+			// 		formDirective.resetForm();
+			// 		this.addItemForm.reset();
+			// 	},
+			// 	error: (error) => {
+			// 		console.error('Error adding item', error);
+			// 	},
+			// });
 		}
 	}
 }
