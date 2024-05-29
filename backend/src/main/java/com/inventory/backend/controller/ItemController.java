@@ -1,6 +1,6 @@
-package com.inventory.backend.resource;
+package com.inventory.backend.controller;
 
-import com.inventory.backend.service.impl.ColorServiceImpl;
+import com.inventory.backend.service.impl.ItemServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/color")
-public class ColorResource {
-    private final ColorServiceImpl colorService;
+@RequestMapping("/item")
+public class ItemController {
+    private final ItemServiceImpl itemService;
 
     @GetMapping("/list")
-    public ResponseEntity<?> getColors() {
-        return ResponseEntity.ok(colorService.list());
+    public ResponseEntity<?> getItems() {
+        return ResponseEntity.ok(itemService.list());
     }
 }
