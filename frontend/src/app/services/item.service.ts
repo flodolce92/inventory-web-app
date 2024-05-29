@@ -24,7 +24,7 @@ export class ItemService {
 	}
 
 	updateItem(item: Item): Observable<Item> {
-		return this.http.put<Item>(`${this.apiUrl}/item/${item.id}`, item);
+		return this.http.put<Item>(`${this.apiUrl}/item/update/${item.id}`, item);
 	}
 
 	deleteItem(id: number): Observable<Item> {
