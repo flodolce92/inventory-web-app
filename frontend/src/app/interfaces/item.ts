@@ -6,6 +6,13 @@ export interface ItemOption {
 	id_item?: number;
 }
 
+export interface ItemHistory {
+	id?: number;
+	date?: string;
+	quantityTransaction: number;
+	id_item?: number;
+}
+
 export interface Item {
 	id?: number;
 	name: string;
@@ -13,4 +20,5 @@ export interface Item {
 	category: string;
 	price: number;
 	options: ItemOption[];
+	histories?: ItemHistory[];
 }

@@ -123,6 +123,11 @@ export class AddItemComponent implements OnInit {
 						quantity: this.addItemForm.value.quantity,
 					},
 				],
+				histories: [
+					{
+						quantityTransaction: this.addItemForm.value.quantity,
+					},
+				],
 			};
 			this.itemService.addItem(newItem).subscribe({
 				next: (response) => {

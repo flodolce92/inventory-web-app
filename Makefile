@@ -12,7 +12,7 @@ build:
 
 run:
 	@echo "$(GREEN)Starting the docker container...$(RESET)"
-	sudo docker compose up --build -d
+	sudo docker compose up --build --remove-orphans -d
 	@echo "$(GREEN)Container started! Navigate to http://localhost:4200$(RESET)"
 
 down:
@@ -23,6 +23,9 @@ clean:
 	@echo "$(RED)Stopping the docker container and removing image and volumes...$(RESET)"
 	sudo docker compose down -v --rmi all
 
+fclean:
+	docker rmi $$(docker images -f dangling=true -q)
+
 help:
 	@echo "Usage: make [target]"
 	@echo ""
@@ -30,6 +33,6 @@ help:
 	@echo "  build   Build the docker image"
 	@echo "  run     Start the docker container"
 	@echo "  down    Stop the docker container"
-	@echo "  clean   Stop the docker container and remove the image"
+	@echo "  clean   Stop the docker container and remove the image and volumes"
 
-.PHONY: all build run down clean help
+.PHONY: all build run down clean fclean help

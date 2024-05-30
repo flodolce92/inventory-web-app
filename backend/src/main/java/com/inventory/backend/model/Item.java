@@ -37,4 +37,8 @@ public class Item {
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<ItemOption> options;
+
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<History> histories;
 }
