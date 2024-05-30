@@ -11,15 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 	styleUrl: './item-list.component.css',
 })
 export class ItemListComponent implements OnInit, AfterViewInit {
-	displayedColumns: string[] = [
-		'name',
-		'category',
-		// 'size',
-		// 'color',
-		'price',
-		// 'quantity',
-		'actions',
-	];
+	displayedColumns: string[] = ['name', 'category', 'price', 'actions'];
 
 	dataSource: MatTableDataSource<Item> = new MatTableDataSource<Item>();
 
@@ -31,7 +23,6 @@ export class ItemListComponent implements OnInit, AfterViewInit {
 	ngOnInit(): void {
 		this.itemService.getItems().subscribe((data) => {
 			this.dataSource.data = data;
-			// console.log(this.dataSource.data);
 		});
 	}
 
@@ -47,5 +38,11 @@ export class ItemListComponent implements OnInit, AfterViewInit {
 		if (this.dataSource.paginator) {
 			this.dataSource.paginator.firstPage();
 		}
+	}
+
+	refreshItems(): void {
+		this.itemService.getItems().subscribe((data) => {
+			this.dataSource.data = data;
+		});
 	}
 }

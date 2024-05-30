@@ -1,6 +1,7 @@
 <h2 mat-dialog-title>{{ data.name | titlecase }}</h2>
 <mat-dialog-content>
-	<table mat-table [dataSource]="data.options" class="mat-elevation-z8">
+	<p *ngIf="data.description"> {{ data.description }} </p>
+	<table mat-table [dataSource]="data.options">
 
 		<!-- Size Column -->
 		<ng-container matColumnDef="size">

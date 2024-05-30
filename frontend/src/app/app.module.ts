@@ -13,6 +13,7 @@ import { ItemListComponent } from './components/item-list/item-list.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 import { ItemDetailModalComponent } from './components/item-detail-modal/item-detail-modal.component';
+import { ItemDeleteComponent } from './components/item-delete/item-delete.component';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,7 +30,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
 	declarations: [
@@ -39,6 +40,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 		AddItemComponent,
 		ItemDetailComponent,
 		ItemDetailModalComponent,
+		ItemDeleteComponent,
 	],
 	imports: [
 		BrowserModule,

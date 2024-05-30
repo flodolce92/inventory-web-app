@@ -28,8 +28,8 @@ export class ItemService {
 		return this.http.put<Item>(`${this.apiUrl}/item/update`, item);
 	}
 
-	deleteItem(id: number): Observable<Item> {
-		return this.http.delete<Item>(`${this.apiUrl}/item/${id}`);
+	deleteItem(id: number): Observable<boolean> {
+		return this.http.delete<boolean>(`${this.apiUrl}/item/${id}`);
 	}
 
 	getCategories(): Observable<string[]> {

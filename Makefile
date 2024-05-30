@@ -10,9 +10,9 @@ build:
 	@echo "$(YELLOW)Building the docker image...$(RESET)"
 	sudo docker compose build
 
-up: build
+run:
 	@echo "$(GREEN)Starting the docker container...$(RESET)"
-	sudo docker compose up -d
+	sudo docker compose up --build -d
 	@echo "$(GREEN)Container started! Navigate to http://localhost:4200$(RESET)"
 
 down:
@@ -20,16 +20,16 @@ down:
 	sudo docker compose down
 
 clean:
-	@echo "$(RED)Stopping the docker container and removing the image...$(RESET)"
-	sudo docker compose down --rmi all
+	@echo "$(RED)Stopping the docker container and removing image and volumes...$(RESET)"
+	sudo docker compose down -v --rmi all
 
 help:
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
 	@echo "  build   Build the docker image"
-	@echo "  up      Start the docker container"
+	@echo "  run     Start the docker container"
 	@echo "  down    Stop the docker container"
 	@echo "  clean   Stop the docker container and remove the image"
 
-.PHONY: all build up down clean help
+.PHONY: all build run down clean help

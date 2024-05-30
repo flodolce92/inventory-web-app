@@ -4,8 +4,12 @@ import com.inventory.backend.model.Item;
 import com.inventory.backend.service.impl.ItemServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -35,9 +39,9 @@ public class ItemController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteItem(@PathVariable Long id) {
-        itemService.delete(id);
-        return ResponseEntity.ok("Item deleted successfully");
+    public ResponseEntity<Boolean> deleteItem(@PathVariable Long id) {
+        boolean isDeleted = itemService.delete(id);
+        return ResponseEntity.ok(isDeleted);
     }
 
     @GetMapping("/categories")
