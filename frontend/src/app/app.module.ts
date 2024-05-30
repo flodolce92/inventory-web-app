@@ -29,6 +29,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
 	declarations: [
@@ -58,6 +59,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 		MatSortModule,
 		MatExpansionModule,
 		MatDialogModule,
+		MatAutocompleteModule,
 		// InMemoryWebApiModule.forRoot(InMemoryDataService),
 	],
 	providers: [provideAnimationsAsync()],

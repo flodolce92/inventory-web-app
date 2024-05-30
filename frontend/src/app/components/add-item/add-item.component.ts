@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+	FormBuilder,
+	FormGroup,
+	Validators,
+	FormControl,
+} from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { FormGroupDirective } from '@angular/forms';
 
 import { ItemService } from '../../services/item.service';
@@ -9,13 +16,21 @@ import { Item } from '../../interfaces/item';
 @Component({
 	selector: 'app-add-item',
 	templateUrl: './add-item.component.html',
-	styleUrl: './add-item.component.css',
+	styleUrls: ['./add-item.component.css'],
 })
 export class AddItemComponent implements OnInit {
 	addItemForm: FormGroup;
 	categories = <string[]>[];
 	sizes = <string[]>[];
 	colors = <string[]>[];
+
+	filteredCategories: Observable<string[]>;
+	filteredSizes: Observable<string[]>;
+	filteredColors: Observable<string[]>;
+
+	categoryControl = new FormControl('', Validators.required);
+	sizeControl = new FormControl('', Validators.required);
+	colorControl = new FormControl('', Validators.required);
 
 	constructor(
 		private formBuilder: FormBuilder,
@@ -26,14 +41,29 @@ export class AddItemComponent implements OnInit {
 	ngOnInit() {
 		this.itemService.getCategories().subscribe((data) => {
 			this.categories = data;
+			this.setupFilter(
+				this.categoryControl,
+				this.categories,
+				(filtered) => (this.filteredCategories = filtered)
+			);
 		});
 
 		this.attributeService.getSizes().subscribe((data) => {
 			this.sizes = data;
+			this.setupFilter(
+				this.sizeControl,
+				this.sizes,
+				(filtered) => (this.filteredSizes = filtered)
+			);
 		});
 
 		this.attributeService.getColors().subscribe((data) => {
 			this.colors = data;
+			this.setupFilter(
+				this.colorControl,
+				this.colors,
+				(filtered) => (this.filteredColors = filtered)
+			);
 		});
 
 		this.addItemForm = this.formBuilder.group({
@@ -51,10 +81,32 @@ export class AddItemComponent implements OnInit {
 				'',
 				[Validators.required, Validators.min(0), Validators.pattern(/^\d+$/)],
 			],
-			category: ['', Validators.required],
-			size: ['', Validators.required],
-			color: ['', Validators.required],
+			category: this.categoryControl,
+			size: this.sizeControl,
+			color: this.colorControl,
 		});
+	}
+
+	private setupFilter(
+		control: FormControl,
+		options: string[],
+		setFilteredOptions: (filtered: Observable<string[]>) => void
+	): void {
+		const filteredOptions = control.valueChanges.pipe(
+			startWith(''),
+			map((value) => this._filter(value, options))
+		);
+		setFilteredOptions(filteredOptions);
+	}
+
+	private _filter(value: string, options: string[]): string[] {
+		if (!value) {
+			return options;
+		}
+		const filterValue = value.toLowerCase();
+		return options.filter((option) =>
+			option.toLowerCase().includes(filterValue)
+		);
 	}
 
 	onSubmit(formDirective: FormGroupDirective): void {
@@ -72,18 +124,9 @@ export class AddItemComponent implements OnInit {
 					},
 				],
 			};
-			console.log('New item:', newItem);
 			this.itemService.addItem(newItem).subscribe({
 				next: (response) => {
 					console.log('Item added successfully', response);
-					this.itemService.getItems().subscribe({
-						next: (items) => {
-							console.log('List of all items:', items);
-						},
-						error: (error) => {
-							console.error('Error fetching items', error);
-						},
-					});
 					formDirective.resetForm();
 					this.addItemForm.reset();
 				},
