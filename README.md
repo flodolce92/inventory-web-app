@@ -14,3 +14,18 @@ This project is an Inventory Management Web Application developed using Angular 
 * Angular 17
 * Angular Material
 * TypeScript
+* Java 17
+* Spring Boot 3.0.0
+* Maven
+* MySQL
+* Docker
+
+### Starting the Application
+
+make sure you have Docker installed on your machine. Then, run the following command to start the application:
+
+```bash
+make run
+```
+
+The frontend will be available at `http://localhost:4200` and the backend will be available at `http://localhost:8080`.

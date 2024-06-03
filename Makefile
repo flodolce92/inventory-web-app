@@ -8,20 +8,20 @@ all: up
 
 build:
 	@echo "$(YELLOW)Building the docker image...$(RESET)"
-	sudo docker compose build
+	docker compose build
 
 run:
 	@echo "$(GREEN)Starting the docker container...$(RESET)"
-	sudo docker compose up --build --remove-orphans -d
+	docker compose up --build --remove-orphans -d
 	@echo "$(GREEN)Container started! Navigate to http://localhost:4200$(RESET)"
 
 down:
 	@echo "$(CYAN)Stopping the docker container...$(RESET)"
-	sudo docker compose down
+	docker compose down
 
 clean:
 	@echo "$(RED)Stopping the docker container and removing image and volumes...$(RESET)"
-	sudo docker compose down -v --rmi all
+	docker compose down -v --rmi all
 
 fclean:
 	docker rmi $$(docker images -f dangling=true -q)
